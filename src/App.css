@@ -6,7 +6,8 @@
 
 body {
   font-family: Arial, sans-serif;
-
+  background: linear-gradient(to bottom, #bab2b2 60%, #1a1a1a 100%);
+  background-attachment: fixed;
 }
 
 .hero {
@@ -35,7 +36,7 @@ body {
   position: relative;
   z-index: 2;
   text-align: center;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 40px;
 }
 
@@ -59,7 +60,7 @@ p {
   text-decoration: none;
   border-radius: 8px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: bolder;
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -67,4 +68,67 @@ p {
 .order-btn:hover {
   background: #f0f0f0;
   transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+.menu-section {
+  background: transparent;
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+
+}
+
+.menu-section h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #000000;
+}
+
+.menu-category {
+  margin-bottom: 40px;
+}
+
+.menu-category h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a1a1a;
+  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #FAF9F6;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.item-name {
+  font-size: 15px;
+  color: #000000;
+}
+
+.item-price {
+  font-size: 15px;
+  font-weight: bold;
+  color: #d70f64;
 }
