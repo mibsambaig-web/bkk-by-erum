@@ -6,25 +6,77 @@ const menuData = {
     { name: "Malai Paratha Roll", price: 400 },
     { name: "Bihari Paratha Roll", price: 380 },
     { name: "Kabab Paratha Roll", price: 380 },
-    { name: "Dam Qeema Paratha Roll (Beef)", price: 400 },
+    { name: "Damqeema Paratha Roll (Beef)", price: 400 },
   ],
+
+  "Coffee and Tea": [
+    { name: "Hot Chocolate", price: 500 },
+    { name: "Kashmiri Pink Tea", price: 500 },
+    { name: "Green Tea", price: 400 },
+    { name: "Choco Cloud", price: 699 },
+    { name: "Cold Coffee", price: 600 },
+    { name: "Mixed Tea", price: 300 },
+    { name: "Coffee (Beaten)", price: 500 },
+    { name: "Black Coffee", price: 350 },
+  ],
+
+  "Healthy Meals": [
+    { name: "Steamed Milk", price: 500 },
+  ],
+
+  "New Years Special Deals": [
+    { 
+      name: "Friends Deal (2 Person)", 
+      description: "2 Bihari Paratha Roll + 1 Chicken Khowsay",
+      price: "Price on request" 
+    },
+    { 
+      name: "Family Deal", 
+      description: "2 Bihari Paratha Roll + 2 Malai Paratha Roll + 2 Chicken Khowsay",
+      price: "Price on request" 
+    },
+  ],
+
   Khowsay: [
     { name: "Vegetable Khowsay", price: 699 },
     { name: "Chicken Khowsay", price: 699 },
     { name: "Chicken Kabab Khowsay", price: 699 },
     { name: "Bihari Khowsay (Chicken)", price: 699 },
+    { name: "Dami Khowsay (Beef)", price: 850 },
   ],
-  Mains: [
-    { name: "Dam Qeema (Beef)", price: 850 },
-    { name: "Chicken Karahi", price: 950 },
-    { name: "Mutton Karahi", price: 1299 },
-    { name: "Beef Nihari", price: 899 },
+
+  "Boba World": [
+    { name: "Mango Boba Bliss (Iced Tea)", price: 600 },
+    { name: "Peach Boba Bliss (Iced Tea)", price: 600 },
+    { name: "Lemon Boba Bliss (Iced Tea)", price: 600 },
+    { name: "Tea Pearl Bliss", price: 600 },
+    { name: "Brew Pearl Latte", price: 800 },
   ],
+
+  "Pakistani Cuisines": [
+    { name: "Dam Ka Qeema (150gm Beef)", price: 1200 },
+    { name: "Kabab Karahi", price: 650 },
+  ],
+
+  Sides: [
+    { name: "Curry (Extra)", price: 100 },
+    { name: "Secret Chatni (Extra)", price: 80 },
+    { name: "Paratha (Frozen)", price: 130 },
+    { name: "Zeera Raita", price: 60 },
+  ],
+
   Desserts: [
-    { name: "Kheer", price: 250 },
-    { name: "Gajar ka Halwa", price: 280 },
-    { name: "Shahi Tukray", price: 320 },
+    { name: "Soji Halwa (200gm)", price: 300 },
   ],
+
+  Beverages: [
+    { name: "Doodh Soda", price: 400 },
+    { name: "Pakola Doodh Soda", price: 400 },
+    { name: "Orange Doodh Soda", price: 400 },
+    { name: "Simple Orange Soda", price: 300 },
+    { name: "Simple Pakola Soda", price: 300 },
+    { name: "Simple Lemon Soda", price: 300 },
+  ]
 };
 
 export default function App() {
@@ -141,8 +193,8 @@ export default function App() {
             <h2 className="section__title">Made from scratch,<br />every single time.</h2>
             <p className="about__body">
               BKK by Erum started as a labour of love — a home kitchen in Karachi
-              where every dish is cooked the slow way. No shortcuts, no frozen bases.
-              Just real Pakistani recipes passed down and perfected over years.
+              where every dish is cooked the slow way.
+              Just Authentic recipes passed down and perfected over years.
             </p>
             <p className="about__body">
               Whether it's a steaming bowl of Khowsay or a perfectly rolled Bihari
