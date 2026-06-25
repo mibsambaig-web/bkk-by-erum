@@ -1,26 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 const menuData = {
   Starters: [
     { name: "Malai Paratha Roll", price: 400 },
-    { name: "Bihari Paratha Roll", price: 380 },
-    { name: "Kabab Paratha Roll", price: 380 },
-    { name: "Damqeema Paratha Roll (Beef)", price: 400 },
+    { name: "Bihari Paratha Roll", price: 400 },
+    { name: "Kabab Paratha Roll", price: 400 },
+    { name: "Damqeema Paratha Roll (Beef)", price: 450 },
+    { name: "Beef boti Roll", price: 450 },
+  ],
+
+  "Chinese Food": [
+    { name: "Creamy Pasta", price: 800 },
+    { name: "Desi Twist Macaroni", price: 800 },
+    { name: "Chicken Manchurian + Rice", price: 1000 },
+    { name: "Singaporean Rice", price: 1000 },
+    { name: "Chicken chowmein", price: 800 },
   ],
 
   "Coffee and Tea": [
-    { name: "Hot Chocolate", price: 500 },
-    { name: "Kashmiri Pink Tea", price: 500 },
+    { name: "Hot Chocolate", price: 600 },
+    { name: "Kashmiri Pink Tea", price: 600 },
     { name: "Green Tea", price: 400 },
-    { name: "Choco Cloud", price: 699 },
-    { name: "Cold Coffee", price: 600 },
-    { name: "Mixed Tea", price: 300 },
-    { name: "Coffee (Beaten)", price: 500 },
-    { name: "Black Coffee", price: 350 },
-  ],
-
-  "Healthy Meals": [
+    { name: "Choco Cloud", price: 800 },
+    { name: "Cold Coffee", price: 800 },
+    { name: "Mixed Tea", price: 400 },
+    { name: "Coffee (Beaten)", price: 600 },
+    { name: "Black Coffee", price: 500 },
     { name: "Steamed Milk", price: 500 },
   ],
 
@@ -38,24 +44,41 @@ const menuData = {
   ],
 
   Khowsay: [
-    { name: "Vegetable Khowsay", price: 699 },
-    { name: "Chicken Khowsay", price: 699 },
-    { name: "Chicken Kabab Khowsay", price: 699 },
-    { name: "Bihari Khowsay (Chicken)", price: 699 },
-    { name: "Dami Khowsay (Beef)", price: 850 },
+    { name: "Vegetable Khowsay", price: 800 },
+    { name: "Chicken Khowsay", price: 800 },
+    { name: "Beef Khowsay", price: 1000 },
+    { name: "Bihari Khowsay", price: 800 },
+    { name: "Dami Khowsay (Beef)", price: 1000 },
+    { name: "Chicken Cream Khowsay", price: 1000 },
   ],
 
   "Boba World": [
     { name: "Mango Boba Bliss (Iced Tea)", price: 600 },
     { name: "Peach Boba Bliss (Iced Tea)", price: 600 },
     { name: "Lemon Boba Bliss (Iced Tea)", price: 600 },
+    { name: "Strawberry Boba Bliss (Iced Tea)", price: 600 },
     { name: "Tea Pearl Bliss", price: 600 },
     { name: "Brew Pearl Latte", price: 800 },
   ],
 
   "Pakistani Cuisines": [
+    { name: "Chicken Handi (Half)", price: 1800 },
+    { name: "Chicken Handi (full)", price: 3500 },
+    { name: "Chicken Achari Handi (Half)", price: 2000 },
+    { name: "Chicken Achari Handi (full)", price: 3800 },
+    { name: "Chicken Creamy Handi (Half)", price: 2200 },
+    { name: "Chicken Creamy Handi (full)", price: 4400 },
+    { name: "Chicken Cheesy Handi (Half)", price: 2500 },
+    { name: "Chicken Cheesy Handi (full)", price: 4500 },
     { name: "Dam Ka Qeema (150gm Beef)", price: 1200 },
-    { name: "Kabab Karahi", price: 650 },
+    { name: "Kabab Karahi (2 Kabab)", price: 800 },
+  ],
+
+  "Chaat Corner": [
+    { name: "Chana Chaat (250 gram)", price: 800 },
+    { name: "Khatty Aloo (250 gram)", price: 600 },
+    { name: "Khatty Aloo (250 gram)", price: 800 },
+    { name: "Dahi Phulki (250 gram)", price: 800 },
   ],
 
   Sides: [
@@ -66,10 +89,12 @@ const menuData = {
   ],
 
   Desserts: [
-    { name: "Soji Halwa (200gm)", price: 300 },
+    { name: "Soji Halwa (250gm)", price: 400 },
+    { name: "Gajar Halwa (250gm)", price: 800 },
+    { name: "Besan Halwa (250gm)", price: 500 },
   ],
 
-  Beverages: [
+  Drinks: [
     { name: "Doodh Soda", price: 400 },
     { name: "Pakola Doodh Soda", price: 400 },
     { name: "Orange Doodh Soda", price: 400 },
@@ -83,6 +108,19 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("Starters");
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  // ✅ ADD THESE TWO LINES HERE
+  const tabsRef = useRef(null);
+  
+  const scrollTabs = (direction) => {
+    if (!tabsRef.current) return;
+    
+    const scrollAmount = 300; // You can change this value
+    tabsRef.current.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -150,16 +188,37 @@ export default function App() {
           <h2 className="section__title">Our Menu</h2>
         </div>
 
-        <div className="menu__tabs">
-          {Object.keys(menuData).map((cat) => (
-            <button
-              key={cat}
-              className={`menu__tab ${activeTab === cat ? "menu__tab--active" : ""}`}
-              onClick={() => setActiveTab(cat)}
-            >
-              {cat}
-            </button>
-          ))}
+        <div className="menu__tabs-wrapper">
+          {/* Left Arrow Button */}
+          <button
+            className="menu__scroll-btn menu__scroll-btn--left"
+            onClick={() => scrollTabs('left')}
+            aria-label="Scroll menu left"
+          >
+            ←
+          </button>
+
+          {/* Scrollable Tabs */}
+          <div className="menu__tabs" ref={tabsRef}>
+            {Object.keys(menuData).map((cat) => (
+              <button
+                key={cat}
+                className={`menu__tab ${activeTab === cat ? "menu__tab--active" : ""}`}
+                onClick={() => setActiveTab(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Right Arrow Button */}
+          <button
+            className="menu__scroll-btn menu__scroll-btn--right"
+            onClick={() => scrollTabs('right')}
+            aria-label="Scroll menu right"
+          >
+            →
+          </button>
         </div>
 
         <div className="menu__list">
